@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DynamicView.Pages.ListAnswerPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <StackLayout Margin="10">
+
+        <Label Text="Sample list answer" />
+
+        <CollectionView x:Name="CollectionViewAnswer">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Margin="0,5">
+
+                        <Label Text="{Binding Detail, StringFormat='Question : {0}'}" />
+
+                        <Label IsVisible="{Binding IsDescriptionQuestion}" Text="{Binding DescriptionAnswer, StringFormat='Answer : {0}'}" />
+                        <Label IsVisible="{Binding IsSelectionQuestion}" Text="{Binding SelectedAnswer, StringFormat='Answer : {0}'}" />
+                        <Label IsVisible="{Binding IsYesNoQuestion}" Text="{Binding YesAnswer, StringFormat='Answer : {0}'}" />
+
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </StackLayout>
+
+</ContentPage>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DynamicView.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:DynamicView.Converters">
+
+    <StackLayout Margin="10">
+
+        <Label Text="Sample list question" />
+
+        <ListView
+            x:Name="ListViewQuestion"
+            RowHeight="100"
+            SelectionMode="None"
+            SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Margin="0,5">
+
+                            <Label Text="{Binding Id, StringFormat='Question no {0}'}" />
+                            <Label Text="{Binding Detail}" />
+
+                            <Entry IsVisible="{Binding IsDescriptionQuestion}" Text="{Binding DescriptionAnswer}" />
+
+                            <Picker
+                                Title="Select"
+                                IsVisible="{Binding IsSelectionQuestion}"
+                                ItemsSource="{Binding SelectionItem}"
+                                SelectedItem="{Binding SelectedAnswer}" />
+
+                            <Grid IsVisible="{Binding IsYesNoQuestion}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <RadioButton
+                                    Grid.Column="0"
+                                    IsChecked="{Binding IsYesAnswer}"
+                                    Text="Yes" />
+                                <RadioButton Grid.Column="1" Text="No" />
+                            </Grid>
+
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button
+            x:Name="ButtonSubmit"
+            Clicked="ButtonSubmit_Clicked"
+            Text="Submit" />
+
+    </StackLayout>
+
+</ContentPage>
